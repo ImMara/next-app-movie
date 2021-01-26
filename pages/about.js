@@ -1,15 +1,21 @@
+import * as React from "react";
+import {Component} from "react/cjs/react.production.min";
 
 // functional component - arrow function
-const About = () => {
+// WHEN TO USE :
+//  1.for smaller components
+//  2.reusable component
+//  3.presentational components , partially right , we can use hooks and specify state
 
-    const message = "Hello World"
+// const About = () => {
+//
+//     const message = "Hello World"
+//
+//     return(
+//     <h1> Hello About Page - { message } </h1>
+//     )
+// }
 
-    return(
-    <h1> Hello About Page - { message } </h1>
-    )
-}
-
-// import * as React from "react";
 //
 // const About = () => {
 //
@@ -23,5 +29,14 @@ const About = () => {
 //        <h1>Hello About Page</h1>
 //    )
 // }
+
+class About extends Component {
+
+    render(){
+        return (
+            <h1>Hello I am class component</h1>
+        )
+    }
+}
 
 export default About;
