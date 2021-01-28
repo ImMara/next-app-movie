@@ -5,14 +5,24 @@ import Carousel from "../components/carousel";
 import MovieList from "../components/movieList";
 import Footer from "../components/footer";
 import {getMovies} from '../actions'
-import {useState} from "react";
+import {useState,useEffect} from "react";
 
 export default function Home() {
     const [movies, setMovies] = useState([]);
 
-    getMovies().then((movies) => {
-        setMovies(movies)
-    })
+    useEffect( () => {
+
+        const fetchData = async () => {
+            const resMovies = await getMovies();
+            setMovies(resMovies);
+        }
+        fetchData();
+        // getMovies().then((movies) => {
+        //     setMovies(movies)
+        // })
+
+    },[])
+
 
     return (
         <div>
