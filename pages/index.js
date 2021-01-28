@@ -21,9 +21,13 @@ class Home extends Component {
 
     //called only once when component did mounted
     componentDidMount() {
-        getMovies().then((movies) => {
-            this.setState({movies})
-        });
+        getMovies()
+            .then((movies) => {
+                this.setState({movies})
+            })
+            .catch((error) => {
+                 this.setState({errorMessage: error})
+            })
 
     }
 
@@ -56,6 +60,11 @@ class Home extends Component {
                             <div className="col-lg-9">
                                 <Carousel/>
                                 <div className="row">
+                                    { this.state.errorMessage  &&
+                                        <div className="alert alert-danger" role="alert">
+                                        { this.state.errorMessage  }
+                                        </div>
+                                    }
                                     <MovieList
                                         movies={this.state.movies}
                                     />
