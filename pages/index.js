@@ -21,6 +21,7 @@ export default function Home() {
                         crossOrigin="anonymous"></script>
             </Head>
             <Navbar/>
+            <div className="home-page">
             <div className="container">
                 <div className="row">
                     <div className="col-lg-3">
@@ -34,7 +35,14 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+        </div>
             <Footer/>
+            <style jsx>{`
+            .home-page{
+            padding-top:80px;
+            }
+            `}
+            </style>
         </div>
     )
 }
