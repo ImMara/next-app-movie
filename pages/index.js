@@ -9,27 +9,36 @@ import {useState,useEffect} from "react";
 import {Component} from "react/cjs/react.production.min";
 
 class Home extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            movies: [],
+
+    static async getInitialProps() {
+        const movies = await getMovies();
+        return{
+            movies
         }
     }
+
+    // constructor(props){
+    //     super(props)
+    //     this.state = {
+    //         movies: [],
+    //     }
+    // }
     // state = {
     //     movies: []
     // }
 
+    // called only on client browser
     //called only once when component did mounted
-    componentDidMount() {
-        getMovies()
-            .then((movies) => {
-                this.setState({movies})
-            })
-            .catch((error) => {
-                 this.setState({errorMessage: error})
-            })
+    // componentDidMount() {
+    //     getMovies()
+    //         .then((movies) => {
+    //             this.setState({movies})
+    //         })
+    //         .catch((error) => {
+    //              this.setState({errorMessage: error})
+    //         })
 
-    }
+    // }
 
 
     render() {
@@ -60,13 +69,13 @@ class Home extends Component {
                             <div className="col-lg-9">
                                 <Carousel/>
                                 <div className="row">
-                                    { this.state.errorMessage  &&
-                                        <div className="alert alert-danger" role="alert">
-                                        { this.state.errorMessage  }
-                                        </div>
-                                    }
+                                    {/*{ this.props.errorMessage  &&*/}
+                                    {/*    <div className="alert alert-danger" role="alert">*/}
+                                    {/*    { this.props.errorMessage  }*/}
+                                    {/*    </div>*/}
+                                    {/*}*/}
                                     <MovieList
-                                        movies={this.state.movies}
+                                        movies={this.props.movies}
                                     />
                                 </div>
                             </div>
