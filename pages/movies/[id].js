@@ -26,7 +26,6 @@ import { getMovieById } from '../../actions'
 
     Movie.getInitialProps = async () => {
         const movie = await getMovieById("2")
-
         return { movie }
     }
 
