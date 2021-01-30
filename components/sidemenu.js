@@ -1,5 +1,4 @@
-
-const SideMenu = (props) =>{
+const SideMenu = (props) => {
 
     return (
         <>

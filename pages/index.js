@@ -5,7 +5,7 @@ import Carousel from "../components/carousel";
 import MovieList from "../components/movieList";
 import Footer from "../components/footer";
 import {getMovies} from '../actions'
-import {useState,useEffect} from "react";
+import {useState, useEffect} from "react";
 import {Component} from "react/cjs/react.production.min";
 
 class Home extends Component {
@@ -14,39 +14,16 @@ class Home extends Component {
         const movies = await getMovies();
         const images = movies.map((movie) => {
             return {
-                id:`image-${movie.id}`,
+                id: `image-${movie.id}`,
                 url: movie.cover,
-                name:movie.name
+                name: movie.name
             }
         })
-        return{
+        return {
             movies,
             images
         }
     }
-
-    // constructor(props){
-    //     super(props)
-    //     this.state = {
-    //         movies: [],
-    //     }
-    // }
-    // state = {
-    //     movies: []
-    // }
-
-    // called only on client browser
-    //called only once when component did mounted
-    // componentDidMount() {
-    //     getMovies()
-    //         .then((movies) => {
-    //             this.setState({movies})
-    //         })
-    //         .catch((error) => {
-    //              this.setState({errorMessage: error})
-    //         })
-
-    // }
 
     render() {
         return (
@@ -63,11 +40,6 @@ class Home extends Component {
                             <div className="col-lg-9">
                                 <Carousel images={this.props.images}/>
                                 <div className="row">
-                                    {/*{ this.props.errorMessage  &&*/}
-                                    {/*    <div className="alert alert-danger" role="alert">*/}
-                                    {/*    { this.props.errorMessage  }*/}
-                                    {/*    </div>*/}
-                                    {/*}*/}
                                     <MovieList
                                         movies={this.props.movies}
                                     />
@@ -81,4 +53,5 @@ class Home extends Component {
         )
     }
 }
+
 export default Home;
