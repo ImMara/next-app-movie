@@ -32,6 +32,23 @@ const MOVIE_DATA = [{
         cover: 'https://images.unsplash.com/photo-1462759353907-b2ea5ebd72e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2389&q=80'
     }]
 
+const CATEGORY_DATA = [
+    {id:'1',name:'drama'},
+    {id:'2',name:'action'},
+    {id:'3',name:'adventure'},
+    {id:'4',name:'historical'},
+    ]
+
+export const getCategories = () =>{
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(CATEGORY_DATA)
+            reject('cannot fetch data!')
+        }, 50)
+    })
+}
+
+
 export const getMovies = () => {
 
     return new Promise((resolve, reject) => {

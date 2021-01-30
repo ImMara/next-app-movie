@@ -4,7 +4,7 @@ import SideMenu from "../components/sidemenu";
 import Carousel from "../components/carousel";
 import MovieList from "../components/movieList";
 import Footer from "../components/footer";
-import {getMovies} from '../actions'
+import {getMovies, getCategories} from '../actions'
 import {useState, useEffect} from "react";
 import {Component} from "react/cjs/react.production.min";
 
@@ -12,6 +12,7 @@ class Home extends Component {
 
     static async getInitialProps() {
         const movies = await getMovies();
+        const categories = await getCategories();
         const images = movies.map((movie) => {
             return {
                 id: `image-${movie.id}`,
@@ -21,7 +22,8 @@ class Home extends Component {
         })
         return {
             movies,
-            images
+            images,
+            categories
         }
     }
 
@@ -34,6 +36,7 @@ class Home extends Component {
                         <div className="row">
                             <div className="col-lg-3">
                                 <SideMenu
+                                    categories={this.props.categories}
                                     appName={"Movie DB"}
                                 />
                             </div>

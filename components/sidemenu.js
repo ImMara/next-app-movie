@@ -1,12 +1,16 @@
 const SideMenu = (props) => {
 
-    return (
+    const { categories } = props;
+    return(
         <>
             <h1 className="my-4">{props.appName}</h1>
             <div className="list-group">
-                <a href="#" className="list-group-item">Category 1</a>
-                <a href="#" className="list-group-item">Category 2</a>
-                <a href="#" className="list-group-item">Category 3</a>
+                { categories.map((category) =>
+                    <a
+                        key={category.id}
+                        href="#"
+                        className="list-group-item">{category.name}</a>
+                )}
             </div>
 
         </>
