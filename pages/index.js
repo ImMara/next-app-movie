@@ -12,8 +12,15 @@ class Home extends Component {
 
     static async getInitialProps() {
         const movies = await getMovies();
+        const images = movies.map((movie) => {
+            return {
+                id:`image-${movie.id}`,
+                image: movie.image
+            }
+        })
         return{
-            movies
+            movies,
+            images
         }
     }
 
@@ -40,7 +47,6 @@ class Home extends Component {
 
     // }
 
-
     render() {
         return (
             <div>
@@ -54,7 +60,7 @@ class Home extends Component {
                                 />
                             </div>
                             <div className="col-lg-9">
-                                <Carousel/>
+                                <Carousel images={this.props.images}/>
                                 <div className="row">
                                     {/*{ this.props.errorMessage  &&*/}
                                     {/*    <div className="alert alert-danger" role="alert">*/}
