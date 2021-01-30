@@ -40,6 +40,7 @@ const CATEGORY_DATA = [
     ]
 
 export const getCategories = () =>{
+
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(CATEGORY_DATA)
@@ -47,7 +48,6 @@ export const getCategories = () =>{
         }, 50)
     })
 }
-
 
 export const getMovies = () => {
 
