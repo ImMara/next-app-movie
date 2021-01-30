@@ -1,4 +1,4 @@
-const Modal = () =>{
+const Modal = (props) =>{
 
     let closeBtn = null;
 
@@ -6,8 +6,6 @@ const Modal = () =>{
         alert('submitting modal')
         closeBtn.click();
     }
-
-
 
     return(
         <>
@@ -25,7 +23,7 @@ const Modal = () =>{
                             </button>
                         </div>
                         <div className="modal-body">
-                            ...
+                            {props.children}
                         </div>
                         <div className="modal-footer">
                             <button
