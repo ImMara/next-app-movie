@@ -15,7 +15,8 @@ class Home extends Component {
         const images = movies.map((movie) => {
             return {
                 id:`image-${movie.id}`,
-                image: movie.image
+                url: movie.cover,
+                name:movie.name
             }
         })
         return{
