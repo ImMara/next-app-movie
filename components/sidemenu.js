@@ -1,6 +1,7 @@
-import Modal from "./modal";
+
 import MovieCreateForm from "./movieCreateForm";
 import {createMovie} from "../actions";
+import Modal from "./modal";
 
 const SideMenu = (props) => {
 
