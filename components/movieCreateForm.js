@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-const MovieCreateForm = () => {
+const MovieCreateForm = (props) => {
 
     const [form,setForm] = useState({
         name:"some movie",
@@ -32,9 +32,13 @@ const MovieCreateForm = () => {
         })
     }
 
+    const submitForm = () =>{
+        props.handleFormSubmit({...form})
+    }
+
     return (
         <form>
-            { JSON.stringify(form) }
+            {/*{ JSON.stringify(form) }*/}
             <div className="form-group">
                 <label htmlFor="name">Name</label>
                 <input
@@ -117,6 +121,10 @@ const MovieCreateForm = () => {
                     <option>action</option>
                 </select>
             </div>
+            <button
+                onClick={submitForm}
+                type="button"
+                className="btn btn-primary">Create</button>
         </form>
     )
 }
