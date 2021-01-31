@@ -1,11 +1,21 @@
-const Modal = (props) =>{
+import * as React from "react";
 
-    let closeBtn = null;
+class Modal extends React.Component {
 
-    const submitModal = () => {
-        alert('submitting modal')
-        closeBtn.click();
+    constructor(props) {
+        super(props);
+        this.closeButton = null;
     }
+
+    closeModal() {
+        this.closeButton.click();
+    }
+
+    submitModal = () => {
+        alert('submitting modal')
+        this.closeModal();
+    }
+    render() {
 
     return(
         <>
@@ -23,17 +33,17 @@ const Modal = (props) =>{
                             </button>
                         </div>
                         <div className="modal-body">
-                            {props.children}
+                            {this.props.children}
                         </div>
                         <div className="modal-footer">
                             <button
-                                ref={ele => closeBtn = ele}
+                                ref={ele => this.closeButton = ele}
                                 type="button"
                                 className="btn btn-secondary"
                                 data-dismiss="modal">Close</button>
-                            { props.hasSubmit &&
+                            { this.props.hasSubmit &&
                                 <button
-                                    onClick={submitModal}
+                                    onClick={this.submitModal}
                                     type="button"
                                     className="btn btn-primary">Save changes</button>
                             }
@@ -43,5 +53,6 @@ const Modal = (props) =>{
             </div>
         </>
     )
+}
 }
 export default Modal;
