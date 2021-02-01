@@ -8,12 +8,14 @@ const dev = process.env.NODE_ENV !=='production'
 const app = next({dev})
 const handle = app.getRequestHandler()
 
+const moviesData = require('./data.json')
+
 app.prepare().then(( )=> {
     const server = express();
     server.use(bodyParser.json())
 
     server.get('/api/v1/movies',(req,res)=>{
-        return res.json({message:"hello world"})
+        return res.json(moviesData)
     })
 
     // server.get('/faq',(req, res) =>{
@@ -23,15 +25,18 @@ app.prepare().then(( )=> {
     server.get('*', (req, res) => {
         return handle(req, res)
     })
+
     server.post('/api/v1/movies', (req, res) => {
         const movie = req.body
         console.log(JSON.stringify(movie))
         return res.json({...movie,createdTime : 'today', author : 'testuser'})
     })
+
     server.patch('/api/v1/movies/:id', (req, res) => {
         const { id } = req.params
         return res.json({message:"updating post of id : "+id})
     })
+
     server.delete('/api/v1/movies/:id', (req, res) => {
         const { id } = req.params
         return res.json({message:"delete post of id : "+id})
