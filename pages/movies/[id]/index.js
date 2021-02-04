@@ -1,5 +1,5 @@
 import {useRouter} from 'next/router'
-import {deleteMovie, getMovieById} from '../../actions'
+import {deleteMovie, getMovieById} from '../../../actions'
 
 
 const Movie = (props) => {
