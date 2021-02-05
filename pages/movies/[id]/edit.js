@@ -1,32 +1,27 @@
-import React from 'react';
-import MovieCreateForm from "../../../components/movieCreateForm";
-import {getMovieById} from "../../../actions";
+
+import React from 'react'
+import MovieCreateForm from '../../../components/movieCreateForm'
+import { getMovieById } from '../../../actions'
+
 
 class EditMovie extends React.Component {
 
-    static getInitialProps({query}){
-        return {query}
-    }
+    static async getInitialProps({query}) {
+        const movie = await getMovieById(query.id)
 
-    state = {
-        movies: [],
-    }
-
-    componentDidMount(){
-        const { id } = this.props.query;
-        getMovieById(id).then(movie => {
-            this.setState({movie})
-        })
+        return { movie }
     }
 
     render() {
-        return(
+        const { movie } = this.props
+        return (
             <div className="container">
-                <h1>EditMovie</h1>
-                {JSON.stringify(this.state.movie)}
-                <MovieCreateForm />
+                <h1>Edit the Movie</h1>
+                <MovieCreateForm initialData={movie} />
             </div>
         )
     }
 }
-export default EditMovie;
+
+
+export default EditMovie
