@@ -3,31 +3,19 @@ import Navbar from '../components/navbar';
 import SideMenu from "../components/sidemenu";
 import Carousel from "../components/carousel";
 import MovieList from "../components/movieList";
-import Footer from "../components/footer";
 import {getMovies, getCategories} from '../actions'
 import {useState, useEffect} from "react";
 import {Component} from "react/cjs/react.production.min";
 
-class Home extends Component {
+const Home = (props) => {
 
-    static async getInitialProps() {
-        const movies = await getMovies();
-        const categories = await getCategories();
-        const images = movies.map((movie) => {
-            return {
-                id: `image-${movie.id}`,
-                url: movie.cover,
-                name: movie.name
-            }
-        })
-        return {
-            movies,
-            images,
-            categories
+        const { images , categories , movies } = props
+        const [filter , setFilter] = useState('')
+
+        const changeCategory = category =>{
+            setFilter(category)
         }
-    }
 
-    render() {
         return (
             <div>
                 <Navbar/>
@@ -36,15 +24,18 @@ class Home extends Component {
                         <div className="row">
                             <div className="col-lg-3">
                                 <SideMenu
-                                    categories={this.props.categories}
+                                    changeCategory = {changeCategory}
+                                    activeCategory = {filter}
+                                    categories={categories}
                                     appName={"Movie DB"}
                                 />
                             </div>
                             <div className="col-lg-9">
-                                <Carousel images={this.props.images}/>
+                                <Carousel images={images}/>
+                                <h1>Displaying {filter} movies</h1>
                                 <div className="row">
                                     <MovieList
-                                        movies={this.props.movies}
+                                        movies={movies}
                                     />
                                 </div>
                             </div>
@@ -54,7 +45,20 @@ class Home extends Component {
 
             </div>
         )
+}
+Home.getInitialProps = async () => {
+    const movies = await getMovies()
+    const categories = await getCategories()
+    const images = movies.map(movie => ({
+        id: `image-${movie.id}`,
+        url: movie.cover,
+        name: movie.name
+    }))
+
+    return {
+        movies,
+        images,
+        categories
     }
 }
-
 export default Home;

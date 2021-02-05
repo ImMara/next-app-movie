@@ -30,10 +30,12 @@ const Movie = (props) => {
             <p className="desc-text">
                 {movie.longDesc}
             </p>
-            <style> {`
-                .desc-text{
-                    font-size:21px;
-                    `}
+            <style>
+                {`
+                    .desc-text{
+                        font-size:21px;
+                    }
+                `}
             </style>
         </div>
     )
