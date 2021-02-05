@@ -15,7 +15,7 @@ class EditMovie extends React.Component {
 
     handleUpdateMovie = (movie) =>{
         updateMovie(movie).then((updatedMovie) =>{
-            router.push(`/movies/${movie.id}`)
+            router.push('/movies/[id]',`/movies/${movie.id}`)
         })
     }
 
